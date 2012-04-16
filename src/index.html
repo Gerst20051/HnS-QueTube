@@ -1,0 +1,84 @@
+<!DOCTYPE html><html lang="en" dir="ltr"><head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>HnS QueTube</title>
+<meta name="author" content="Homenet Spaces Andrew Gerst">
+<meta name="title" content="HnS QueTube">
+<meta name="description" content="HnS QueTube is a YouTube Queue. Replace the DJ!">
+<meta name="keywords" content="hns,quetube,youtube,playlist,video,surfing,music,discovery,instant,andrew,gerst,homenet,spaces,desktop">
+<meta property="og:title" content="HnS QueTube">
+<meta property="og:type" content="website">
+<meta property="og:image" content="http://hns.netai.net/quetube/logo.png">
+<meta property="og:url" content="http://hns.netai.net/quetube/">
+<meta property="og:site_name" content="HnS QueTube">
+<meta property="og:description" content="HnS QueTube is a YouTube Queue. Replace the DJ!">
+<link href="favicon.ico" rel="icon" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="style_index.css">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+<script type="text/javascript" src="http://www.webtoolkit.info/djs/webtoolkit.base64.js"></script>
+<script type="text/javascript" src="https://raw.github.com/kvz/phpjs/master/functions/json/json_encode.js"></script>
+</head>
+<body>
+<div id="oW">
+<div id="w"><div id="hd" class="cf"><div id="l"><div><span>HnS YouTube Instant</span></div></div>
+<div id="sTW"><div id="sTK"><strong>HnS Quetube</strong></div></div>
+</div>
+<div id="m" class="cf">
+<div id="buttons">
+<div id="create-button" class="shiny-button1">Create a DJ Room!<span></span></div>
+<div id="join-button" class="shiny-button3">Join a DJ Room!<span></span></div>
+</div>
+<div id="create">
+<div><input type="text" id="name" placeholder="Name of DJ Room" autocomplete="off"/></div>
+<div id="createroom-button" class="shiny-button1">Create Room!<span></span></div>
+</div>
+<div id="join">
+<div id="output">
+<ul id="roomlist">
+</ul>
+</div>
+</div>
+</div>
+</body>
+<script>
+function getRooms(){
+	$.getJSON("json.php",{type:4,apikey:"hnsapi"},function(responseData){
+		if (responseData){
+			var rooms = responseData["data"];
+			$("#roomlist").html('<li id="header"><div class="name">Name of DJ Room</div><div class="queuesize">Size</div><div class="updated">Last Updated</div><div class="dj">DJ</div></li>');
+			$.each(rooms, function(i,v){
+				var date = new Date(v.timestamp*1000).toUTCString();
+				var queue = $.parseJSON(Base64.decode(v.queue));
+				$("#roomlist").append('<li><div class="name"><a href="room.html#'+v.dj+'">'+v.name+'</a></div><div class="queuesize">'+queue.length+'</div><div class="updated">'+date+'</div><div class="dj"><a href="dj.html#'+v.dj+'">DJ</div></li>');
+			});
+		}
+	});
+}
+
+$(document).ready(function(){
+	$("div#l").click(function(){
+		$("#create, #join").hide();
+		$("#buttons").show();
+	});
+	$("#create-button").click(function(){
+		$("#buttons").hide();
+		$("#create").show();
+	});
+	$("#join-button").click(function(){
+		$("#buttons").hide();
+		$("#join").show();
+		getRooms();
+	});
+	$("#createroom-button").click(function(){
+		var roomname = $.trim($("#name").val());
+		if (roomname.length > 0) {
+			$.getJSON("json.php",{type:5,name:roomname,apikey:"hnsapi"},function(responseData){
+				if (responseData && responseData["error"] === false){
+					var room = responseData["data"];
+					window.location.href = "dj.html#"+room;
+				}
+			});
+		}
+	});
+});
+</script>
+</html>
