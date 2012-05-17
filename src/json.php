@@ -19,10 +19,8 @@ if (isset($ref) && !empty($ref) && isset($_GET['apikey']) && !empty($_GET['apike
 	if (!isset($_GET['apikey']) || empty($_GET['apikey'])) die(error("API Key Error!",true));
 	elseif (!isset($ref) || empty($ref)) die(error("HTTP Referer Error!",true));
 }
-$mysql_host = "mysql13.000webhost.com";
-$mysql_database = "a4956664_hns";
-$mysql_user = "a4956664_root";
-$mysql = mysql_connect('localhost','root','comwiz05');
+
+$mysql = mysql_connect('localhost','root','');
 if (!$mysql) die(error(mysql_error(),true));
 mysql_select_db('hns');
 
