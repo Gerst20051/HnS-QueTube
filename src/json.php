@@ -2,6 +2,8 @@
 header('Content-Type: text/javascript; charset=utf8');
 header('Access-Control-Allow-Origin: *');
 
+require_once 'mysql.config.php';
+
 function error($msg,$json=false) {
 	if ($json) print_r(json_encode(array("error"=>$msg)));
 	else $final['error'] = $msg;
@@ -20,26 +22,27 @@ if (isset($ref) && !empty($ref) && isset($_GET['apikey']) && !empty($_GET['apike
 	elseif (!isset($ref) || empty($ref)) die(error("HTTP Referer Error!",true));
 }
 
-$mysql = mysql_connect('localhost','root','');
+$mysql = mysql_connect(MYSQL_HOST,MYSQL_USER,MYSQL_PASSWORD);
 if (!$mysql) die(error(mysql_error(),true));
-mysql_select_db('hns');
+mysql_select_db(MYSQL_DATABASE);
 
 if (isset($_GET['type']) && !empty($_GET['type'])) $TYPE = (int)$_GET['type'];
 if (isset($_GET['dj']) && !empty($_GET['dj'])) $DJ = (int)$_GET['dj'];
 if (isset($_GET['name']) && !empty($_GET['name'])) $NAME = $_GET['name'];
 if (isset($_GET['queue']) && !empty($_GET['queue'])) $QUEUE = $_GET['queue'];
 if (isset($_GET['timestamp']) && !empty($_GET['timestamp'])) $TIMESTAMP = (int)$_GET['timestamp'];
+if (isset($_GET['history']) && !empty($_GET['history'])) $HISTORY = $_GET['history'];
 
-if ($TYPE == 1) { // get queue
-	$query = "SELECT name, queue, timestamp FROM hnsquetube WHERE dj = $DJ";
-} elseif ($TYPE == 2) { // update queue
-	$query = "UPDATE hnsquetube SET queue='".$QUEUE."', timestamp='".$TIMESTAMP."' WHERE dj = $DJ";
+if ($TYPE == 1) { // get queue and history
+	$query = "SELECT name, queue, timestamp, history FROM `" . MYSQL_TABLE . "` WHERE dj = $DJ";
+} elseif ($TYPE == 2) { // update queue and history
+	$query = "UPDATE `" . MYSQL_TABLE . "` SET queue='".$QUEUE."', timestamp='".$TIMESTAMP."', history='".$HISTORY."' WHERE dj = $DJ";
 } elseif ($TYPE == 3) { // check if queue has been updated
-	$query = "SELECT queue, timestamp FROM hnsquetube WHERE dj = $DJ";
+	$query = "SELECT queue, timestamp FROM `" . MYSQL_TABLE . "` WHERE dj = $DJ";
 } elseif ($TYPE == 4) { // get all dj rooms
-	$query = "SELECT dj, name, queue, timestamp FROM hnsquetube ORDER BY timestamp DESC";
+	$query = "SELECT dj, name, queue, timestamp FROM `" . MYSQL_TABLE . "` ORDER BY timestamp DESC";
 } elseif ($TYPE == 5) { // create dj room
-	$query = "INSERT INTO hnsquetube (name, timestamp, created_timestamp) VALUES ('".mysql_real_escape_string($NAME)."', '".time()."', '".time()."')";
+	$query = "INSERT INTO `" . MYSQL_TABLE . "` (name, timestamp, created_timestamp) VALUES ('".mysql_real_escape_string($NAME)."', '".time()."', '".time()."')";
 }
 
 $res = mysql_query($query) or die(error(mysql_error(),true));
@@ -72,5 +75,4 @@ $final = array(
 
 $json = json_encode($final);
 print_r($json);
-mysql_close();
 ?>
