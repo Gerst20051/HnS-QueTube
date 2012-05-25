@@ -48,11 +48,12 @@ div#tls div.tl{background-image:url(i/tools.gif);background-repeat:no-repeat;cur
 div#tls div.tl.search{margin-right:3px !important}
 div#tls div.config_e{background-position:0 -468px;width:27px}div#tls div.config_e:hover,div#tls div.config_e.on{background-position:-27px -468px}
 div#tls div.arrowright_m{background-position:-4px -630px}div#tls div.arrowright_m:hover,div#tls div.arrowright_m.on{background-position:-29px -630px}
+div#tls div.dblarrowright_m{background-position:-4px -846px}div#tls div.dblarrowright_m:hover,div#tls div.dblarrowright_m.on{background-position:-29px -846px}
 div#tls div.save_m{background-position:-4px -1422px}div#tls div.save_m:hover,div#tls div.save_m.on{background-position:-29px -1422px}
 div#tls div.pinleft_m{background-position:-4px -774px}div#tls div.pinleft_m:hover,div#tls div.pinleft_m.on{background-position:-29px -774px}
 div#tls div.refresh_b{background-position:-2px -1098px}div#tls div.refresh_b:hover,div#tls div.refresh_b.on{background-position:-28px -1098px}
 div#tls div.search{background-position:-4px -1368px}div#tls div.search:hover,div#tls div.search.on{background-position:-29px -1368px}
-div#tls div.alerts{display:none;right:175px;position:absolute;text-align:right;top:3px;width:900px}
+div#tls div.alerts{display:none;right:202px;position:absolute;text-align:right;top:3px;width:900px}
 div#tls div.alerts b.error{color:#f00}
 div#oW{margin:0 5px}
 div#w{margin:0 auto;width:1050px}

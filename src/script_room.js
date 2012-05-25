@@ -187,7 +187,7 @@ function updateQueue(){
 	if (dC.history.length > 0){
 		$("div#hP ul#plh").empty();
 		$.each(dC.history, function(n, item){
-			$("div#hP ul#plh").append('<li id="' + item[0] + '" style="background-image:url(' + item[2] + ')">' + item[1] + '</li>');
+			$("div#hP ul#plh").append('<li id="' + item[0] + '" style="background-image:url(' + item[2] + ')">' + item[1] + '<img class="addvideo" src="i/add.png" title="Add To Queue" content="' + item[1] + '"/></li>');
 		});
 	} else $("div#hP ul#plh").html('<li class="empty">No Videos Are In The History</li>');
 }
@@ -431,13 +431,26 @@ $(window).load(function(){
 		var a = new div_selection(e);
 		var b = new div_selection(e,1);
 		targetid = b.target_id();
-		var item = [targetid, $.trim(a.target_content()).capitalize(), $("#pl #"+targetid+" img.thumb").attr('src')];
+		console.log(targetid);
+		var item = [targetid, $.trim(a.target_content()).capitalize(), $("#pW #pl #"+targetid+" img.thumb").attr('src')];
+		console.log(item);
 		addItemYTQueue(item);
 	});
 	$("div#pW div#pl img.viewvideo").live('click', function(e){
 		var a = new div_selection(e);
 		$("input[type='text']#sB").val(a.target_content());
 		doInstantSearch();
+	});
+	$("div#hP ul#plh img.addvideo").live('click', function(e){
+		var a = new div_selection(e);
+		var b = new div_selection(e,0);
+		targetid = b.selection;
+		console.log("div#hP ul#plh li#"+targetid);
+		console.log($("div#hP ul#plh li#"+targetid));
+		alert($("div#hP li#"+targetid).css('background-image'));
+		var item = [targetid, $.trim(a.target_content()).capitalize(), $("div#hP ul#plh li#"+targetid+" ").css('background-image')]; //.slice(4,-1)
+		console.log(item);
+		//addItemYTQueue(item);
 	});
 	$("div#l").click(function(){
 		window.location.href = "index.html";
@@ -466,12 +479,13 @@ function addItemYTQueue(a){
 		}
 	});
 	if (exists == -1 || isNaN(exists)){
-		if (dC.queue.length == 0){
-			$("div#uP ul#pl li.empty").remove();
-		}
+		if (dC.queue.length == 0) $("div#uP ul#pl li.empty").remove();
+		if (dC.history.length == 0) $("div#hP ul#plh li.empty").remove();
 		dC.queue.push(a);
+		dC.history.unshift(a);
 		pushQueue();
 		$("div#uP ul#pl").append('<li id="' + a[0] + '" style="background-image:url(' + a[2] + ')">' + a[1] + '</li>');
+		$("div#hP ul#plh").prepend('<li id="' + a[0] + '" style="background-image:url(' + a[2] + ')">' + a[1] + '<img class="addvideo" src="i/add.png" title="Add To Queue" content="' + a[1] + '"/></li>');
 		addAlert('<b>Added To Queue #' + dC.queue.length + ':</b> ' + a[1], 5000, 2000);
 	}
 }

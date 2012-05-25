@@ -1,4 +1,4 @@
-var pcontent = '<div id="tls"><div class="tl config config_e" title="Show Your Playlist"></div><div class="tl arrowright arrowright_m" title="Skip"></div><div class="tl save save_m" title="Share This Queue"></div><div class="tl pinleft pinleft_m" title="Exact Search"></div><div class="tl refresh refresh_b" title="Random From Playlist"></div><div class="tl search" title="Show Song Playlists"></div><div class="alerts"></div></div><div id="oW"><div id="w"><div id="hd" class="cf"><div id="l"><div><span>HnS YouTube Instant</span></div></div><input type="text" id="sB" value="" spellcheck="false"></input><div id="sTW"><div id="sTK"><strong>Search YouTube Instantly</strong></div></div><div id="sug"></div></div><div id="m" class="cf"><div id="vD"><div id="iVD">Loading...</div></div><div id="pD"><div id="pW"><div id="pl" class="cf">&nbsp;</div></div><div id="uP"><div id="pI"><input type="text" id="pB" value="Search The Queue" spellcheck="false"></input></div><ul id="pl" class="cf"></ul></div><div id="sP"><div id="pH"><div id="sPI"><input type="text" id="sPB" value="Search Playlists" spellcheck="false"></input></div><div id="sH"><div id="pN">&nbsp;</div><img id="btp" src="i/back.png"></div></div><ul id="pls" class="cf">&nbsp;</ul><div id="plsr" class="cf">&nbsp;</div></div></div><div id="ft" class="cf"><div id="api"><iframe id="fblike" scrolling="no" frameborder="0" src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fyoutube.com&layout=standard&show_faces=true&action=like&font=arial&colorscheme=light&height=70&width=720&send=true" allowTransparency="true"></iframe><div id="sub"><iframe id="twitter" scrolling="no" frameborder="0" src="http://platform.twitter.com/widgets/tweet_button.html?count=horizontal&text=Watch%20Videos%20On%20YouTube&url=http%3A%2F%2Fwww.youtube.com&via=HnSYouTube" allowtransparency="true"></iframe><iframe id="fbshare" scrolling="no" frameborder="0" src="http://s.youtube-3rd-party.com/facebook_share.html?appid=87741124305&href=http%3A%2F%2Fwww.youtube.com&base_url=http%3A%2F%2Fwww.youtube.com&locale=US" allowtransparency="true"></iframe></div></div></div></div></div></div><div id="hnsft"><div id="fbauth"><fb:login-button autologoutlink="true" perms="user_likes,friends_likes,publish_stream"></fb:login-button><div id="fb-root"></div></div><div id="buzz-container"><a title="Post to Google Buzz" class="google-buzz-button" href="http://www.google.com/buzz/post" data-button-style="normal-button" data-url="http://hnsyoutube.webs.com"></a></div><div id="plusone-container"><div class="g-plusone" data-size="standard" data-count="true" data-href="http://hnsyoutube.webs.com"></div></div><iframe id="hnslike" src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fhnsyoutube.webs.com&layout=standard&show_faces=false&action=like&font=arial&colorscheme=light&height=40&width=550&send=true" scrolling="no" frameborder="0" allowTransparency="true"></iframe></div><img id="hc" src="http://www.website-hit-counters.com/cgi-bin/image.pl?URL=572179-3134">';
+var pcontent = '<div id="tls"><div class="tl config config_e" title="Show Your Playlist"></div><div class="tl arrowright arrowright_m" title="Skip"></div><div class="tl dblarrowright dblarrowright_m" title="Enable Fast Play Mode"></div><div class="tl save save_m" title="Share This Queue"></div><div class="tl pinleft pinleft_m" title="Exact Search"></div><div class="tl refresh refresh_b" title="Random From Playlist"></div><div class="tl search" title="Show Song Playlists"></div><div class="alerts"></div></div><div id="oW"><div id="w"><div id="hd" class="cf"><div id="l"><div><span>HnS YouTube Instant</span></div></div><input type="text" id="sB" value="" spellcheck="false"></input><div id="sTW"><div id="sTK"><strong>Search YouTube Instantly</strong></div></div><div id="sug"></div></div><div id="m" class="cf"><div id="vD"><div id="iVD">Loading...</div></div><div id="pD"><div id="pW"><div id="pl" class="cf">&nbsp;</div></div><div id="uP"><div id="pI"><input type="text" id="pB" value="Search The Queue" spellcheck="false"></input></div><ul id="pl" class="cf"></ul></div><div id="sP"><div id="pH"><div id="sPI"><input type="text" id="sPB" value="Search Playlists" spellcheck="false"></input></div><div id="sH"><div id="pN">&nbsp;</div><img id="btp" src="i/back.png"></div></div><ul id="pls" class="cf">&nbsp;</ul><div id="plsr" class="cf">&nbsp;</div></div></div><div id="ft" class="cf"><div id="api"><iframe id="fblike" scrolling="no" frameborder="0" src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fyoutube.com&layout=standard&show_faces=true&action=like&font=arial&colorscheme=light&height=70&width=720&send=true" allowTransparency="true"></iframe><div id="sub"><iframe id="twitter" scrolling="no" frameborder="0" src="http://platform.twitter.com/widgets/tweet_button.html?count=horizontal&text=Watch%20Videos%20On%20YouTube&url=http%3A%2F%2Fwww.youtube.com&via=HnSYouTube" allowtransparency="true"></iframe><iframe id="fbshare" scrolling="no" frameborder="0" src="http://s.youtube-3rd-party.com/facebook_share.html?appid=87741124305&href=http%3A%2F%2Fwww.youtube.com&base_url=http%3A%2F%2Fwww.youtube.com&locale=US" allowtransparency="true"></iframe></div></div></div></div></div></div><div id="hnsft"><div id="fbauth"><fb:login-button autologoutlink="true" perms="user_likes,friends_likes,publish_stream"></fb:login-button><div id="fb-root"></div></div><div id="buzz-container"><a title="Post to Google Buzz" class="google-buzz-button" href="http://www.google.com/buzz/post" data-button-style="normal-button" data-url="http://hnsyoutube.webs.com"></a></div><div id="plusone-container"><div class="g-plusone" data-size="standard" data-count="true" data-href="http://hnsyoutube.webs.com"></div></div><iframe id="hnslike" src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fhnsyoutube.webs.com&layout=standard&show_faces=false&action=like&font=arial&colorscheme=light&height=40&width=550&send=true" scrolling="no" frameborder="0" allowTransparency="true"></iframe></div><img id="hc" src="http://www.website-hit-counters.com/cgi-bin/image.pl?URL=572179-3134">';
 var dC = {
 	"devkey": "AI39si6-KJa9GUrvoNKGEh0rZWfJ2yFrPOxIN79Svnz9zAhosYHrbZfpADwJhd3v6TNl9DbvTtUS_deOcoNCodgvTqq3kxcflw",
 	"title": "HnS YouTube Instant",
@@ -17,6 +17,7 @@ var dC = {
 	"requirekey": false,
 	"hashqueue": false,
 	"exactSearch": false,
+	"fastplayTO": false,
 	"pSResults": false,
 	"sBFocus": false,
 	"sPBFocus": false,
@@ -26,7 +27,8 @@ var dC = {
 	"tl": {
 		"playlists": false,
 		"exact": false,
-		"playlist": false
+		"playlist": false,
+		"fastplay": false
 	}
 };
 
@@ -248,6 +250,13 @@ $(window).load(function(){
 		}
 		goNextVideo();
 		addAlert('Video Skipped',5000,2000);
+	});
+	$("div.tl.dblarrowright").click(function(){
+		dC.tl.fastplay = !dC.tl.fastplay;
+		if ($("div.tl.dblarrowright").hasClass("on")) $("div.tl.dblarrowright").attr('title', 'Enable Fast Play Mode');
+		else $("div.tl.dblarrowright").attr('title', 'Disable Fast Play Mode');
+		$("div.tl.dblarrowright").toggleClass("on");
+		if (dC.fastplayTO) clearTimeout(dC.fastplayTO);
 	});
 	$("div.tl.save").click(function(){
 		if (dC.queue.length > 0) prompt("Here is the link to share your current queue!","http://hnsyoutube.webs.com/quetube.html#"+Base64.encode(json_encode(dC.queue)));
@@ -748,6 +757,10 @@ function loadAndPlayVideo(a){
 		ytplayer.loadVideoById(a[0]);
 		currentVideoId = a[0];
 		pendingDoneWorking = true;
+		if (dC.tl.fastplay) {
+			setTimeout("seekTo(20)",2000);
+			dC.fastplayTO = setTimeout("goNextVideo()",40000);
+		}
 	}
 	var d = $("div#pW");
 	var e = "http%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D" + a[0] + "&amp;src=sp";
