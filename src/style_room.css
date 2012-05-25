@@ -114,7 +114,7 @@ div#sP ul.pl{display:none}
 div#sP ul.pl,div#uP ul#pl,div#hP ul#plh{height:365px;margin:0;overflow-x:hidden;overflow-y:auto;width:100%}
 div#sP li{cursor:pointer}
 div#sP li,div#uP ul#pl li,div#hP ul#plh li{background-color:#99bbe8;border:1px solid #999;font-family:verdana;font-size:11px;list-style:none;margin:1px;padding:3px 6px}
-div#sP li:hover,div#uP ul#pl li:hover,div#hP ul#pl li:hover{background-color:#8ad;border:1px solid #888}
+div#sP li:hover,div#uP ul#pl li:hover,div#hP ul#plh li:hover{background-color:#8ad;border:1px solid #888}
 div#sP div#plsr{display:none;height:367px;overflow:hidden;width:320px}
 div#sP.small div#plsr{width:290px}
 div#sP div#pH{height:40px;width:100%}
@@ -126,3 +126,5 @@ div#uP ul#pl li:first-child,div#hP ul#plh li:first-child{background-color:#ff7b7
 div#uP ul#pl li:first-child:hover,div#hP ul#plh li:first-child:hover{background-color:#ff6763;border:1px solid #d93f3b}
 div#uP ul#pl li.empty,div#hP ul#plh li.empty{padding:10px;text-align:center}
 div#hP{display:none}
+div#hP ul#plh li {position:relative}
+div#hP ul#plh li img{cursor:pointer;position:absolute;right:2px;top:2px}
