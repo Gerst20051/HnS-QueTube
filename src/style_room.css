@@ -47,11 +47,12 @@ div#tls div.tl{background-image:url(i/tools.gif);background-repeat:no-repeat;cur
 div#tls div.tl.search{margin-right:3px !important}
 div#tls div.config_e{background-position:0 -468px;width:27px}div#tls div.config_e:hover,div#tls div.config_e.on{background-position:-27px -468px}
 div#tls div.arrowright_m{background-position:-4px -630px}div#tls div.arrowright_m:hover,div#tls div.arrowright_m.on{background-position:-29px -630px}
+div#tls div.arrowright_e{background-position:0 -612px;width:27px}div#tls div.arrowright_e:hover,div#tls div.arrowright_e.on{background-position:-27px -612px}
 div#tls div.save_m{background-position:-4px -1422px}div#tls div.save_m:hover,div#tls div.save_m.on{background-position:-29px -1422px}
 div#tls div.pinleft_m{background-position:-4px -774px}div#tls div.pinleft_m:hover,div#tls div.pinleft_m.on{background-position:-29px -774px}
 div#tls div.refresh_b{background-position:-2px -1098px}div#tls div.refresh_b:hover,div#tls div.refresh_b.on{background-position:-28px -1098px}
 div#tls div.search{background-position:-4px -1368px}div#tls div.search:hover,div#tls div.search.on{background-position:-29px -1368px}
-div#tls div.alerts{display:none;right:125px;position:absolute;text-align:right;top:3px;width:900px}
+div#tls div.alerts{display:none;right:152px;position:absolute;text-align:right;top:3px;width:900px}
 div#tls div.alerts b.error{color:#f00}
 div#oW{margin:0 5px}
 div#w{margin:0 auto;width:1050px}
@@ -59,8 +60,8 @@ div#l{cursor:pointer;float:left;margin:0 15px 0 0}
 div#l div{background:transparent url(i/logo.png) no-repeat top left;display:block;height:32px;width:180px}
 div#l span{display:none}
 div#hd{margin:35px 0 10px 0;width:100%}
-input[type="text"]#sB{border:2px solid #999;border-radius:5px;-khtml-border-radius:5px;-moz-border-radius:5px;-opera-border-radius:5px;-webkit-border-radius:5px;font-size:20px;height:30px;margin-right:15px;outline:none;padding:0 35px 0 4px;width:310px}
-input[type="text"]#sB:focus,input[type="text"]#sB:hover{border:2px solid #000}
+input[type="text"]#sB,input[type="text"]#sHB{border:2px solid #999;border-radius:5px;-khtml-border-radius:5px;-moz-border-radius:5px;-opera-border-radius:5px;-webkit-border-radius:5px;font-size:20px;height:30px;margin-right:15px;outline:none;padding:0 35px 0 4px;width:310px}
+input[type="text"]#sB:focus,input[type="text"]#sB:hover,input[type="text"]#sHB:focus,input[type="text"]#sHB:hover{border:2px solid #000}
 input[type="text"].sL{background:#fff url(i/loading.gif) no-repeat 325px 50%}
 input[type="text"].sP{background:#fff url(i/playing.gif) no-repeat 325px 50%}
 div#sTW{cursor:default;float:right;position:relative;top:-5px;width:482px}
@@ -104,23 +105,24 @@ div#pW div#pl div.vW span.vT:hover{background-color:#666;border:1px solid #000;c
 div#pW div#pl div.vW span.vT span.viewCount{position:relative;top:-2px}
 div#pW div#pl div.vW span.vT img{cursor:pointer;margin-left:5px;position:relative;top:2px}
 div#pW.small div#pl div.vW span.vT img{margin-left:4px;top:1px;width:13px}
-div#sP div#sPI,div#uP div#pI{height:40px;width:100%}
-div#sP div#sPI input[type="text"]#sPB,div#uP div#pI input[type="text"]#pB{border:2px solid #999;border-radius:5px;-khtml-border-radius:5px;-moz-border-radius:5px;-opera-border-radius:5px;-webkit-border-radius:5px;font-size:16px;height:30px;margin-right:15px;outline:none;padding:0 5px 0 4px;width:312px}
-div#sP div#sPI input[type="text"]#sPB:focus,div#uP div#pI input[type="text"]#pB:focus{border:2px solid #000}
-div#sP.small div#sPI input[type="text"]#sPB,div#uP.small div#pI input[type="text"]#pB{width:277px}
+div#sP div#sPI,div#uP div#pI,div#hP div#pHI{height:40px;width:100%}
+div#sP div#sPI input[type="text"]#sPB,div#uP div#pI input[type="text"]#pB,div#hP div#pHI input[type="text"]#sHB{border:2px solid #999;border-radius:5px;-khtml-border-radius:5px;-moz-border-radius:5px;-opera-border-radius:5px;-webkit-border-radius:5px;font-size:16px;height:30px;margin-right:15px;outline:none;padding:0 5px 0 4px;width:312px}
+div#sP div#sPI input[type="text"]#sPB:focus,div#uP div#pI input[type="text"]#pB:focus,div#hP div#pHI input[type="text"]#sHB:focus{border:2px solid #000}
+div#sP.small div#sPI input[type="text"]#sPB,div#uP.small div#pI input[type="text"]#pB,div#hP.small div#pHI input[type="text"]#sHB{width:277px}
 div#sP ul#pls,div#sP div#plsr ul#pl{height:365px;margin:0;overflow-x:hidden;overflow-y:auto;width:100%}
 div#sP ul.pl{display:none}
-div#sP ul.pl,div#uP ul#pl{height:365px;margin:0;overflow-x:hidden;overflow-y:auto;width:100%}
+div#sP ul.pl,div#uP ul#pl,div#hP ul#plh{height:365px;margin:0;overflow-x:hidden;overflow-y:auto;width:100%}
 div#sP li{cursor:pointer}
-div#sP li,div#uP ul#pl li{background-color:#99bbe8;border:1px solid #999;font-family:verdana;font-size:11px;list-style:none;margin:1px;padding:3px 6px}
-div#sP li:hover,div#uP ul#pl li:hover{background-color:#8ad;border:1px solid #888}
+div#sP li,div#uP ul#pl li,div#hP ul#plh li{background-color:#99bbe8;border:1px solid #999;font-family:verdana;font-size:11px;list-style:none;margin:1px;padding:3px 6px}
+div#sP li:hover,div#uP ul#pl li:hover,div#hP ul#pl li:hover{background-color:#8ad;border:1px solid #888}
 div#sP div#plsr{display:none;height:367px;overflow:hidden;width:320px}
 div#sP.small div#plsr{width:290px}
 div#sP div#pH{height:40px;width:100%}
 div#sP div#pH div#sH{display:none;position:relative}
 div#sP div#pH div#sH div#pN{cursor:default;float:left;font-family:'reenie beanie',arial,serif;font-size:26px;font-weight:bold;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:316px}
 div#sP div#pH div#sH img#btp{cursor:pointer;position:absolute;right:2px;top:8px}
-div#uP ul#pl li{background-position:6px 50%;background-repeat:no-repeat;background-size:30px;cursor:default;padding:10px 10px 10px 42px}
-div#uP ul#pl li:first-child{background-color:#ff7b77;border:1px solid #e34945}
-div#uP ul#pl li:first-child:hover{background-color:#ff6763;border:1px solid #d93f3b}
-div#uP ul#pl li.empty{padding:10px;text-align:center}
+div#uP ul#pl li,div#hP ul#plh li{background-position:6px 50%;background-repeat:no-repeat;background-size:30px;cursor:default;padding:10px 10px 10px 42px}
+div#uP ul#pl li:first-child,div#hP ul#plh li:first-child{background-color:#ff7b77;border:1px solid #e34945}
+div#uP ul#pl li:first-child:hover,div#hP ul#plh li:first-child:hover{background-color:#ff6763;border:1px solid #d93f3b}
+div#uP ul#pl li.empty,div#hP ul#plh li.empty{padding:10px;text-align:center}
+div#hP{display:none}

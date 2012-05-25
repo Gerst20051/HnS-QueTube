@@ -1,4 +1,4 @@
-var pcontent = '<div id="tls"><div class="tl arrowright arrowright_m" title="Skip"></div><div class="tl save save_m" title="Share This Queue"></div><div class="tl pinleft pinleft_m" title="Exact Search"></div><div class="tl refresh refresh_b" title="Random From Playlist"></div><div class="alerts"></div></div><div id="oW"><div id="w"><div id="hd" class="cf"><div id="l"><div><span>HnS YouTube Instant</span></div></div><input type="text" id="sB" value="" spellcheck="false"></input><div id="sTW"><div id="sTK"><strong>Search YouTube Instantly</strong></div></div><div id="sug"></div></div><div id="m" class="cf"><div id="pW"><div id="pl" class="cf">&nbsp;</div></div><div id="uP"><div id="pI"><input type="text" id="pB" value="Search The Queue" spellcheck="false"></input></div><ul id="pl" class="cf"></ul></div><div id="sP"><div id="pH"><div id="sPI"><input type="text" id="sPB" value="Search Playlists" spellcheck="false"></input></div><div id="sH"><div id="pN">&nbsp;</div><img id="btp" src="i/back.png"></div></div><ul id="pls" class="cf">&nbsp;</ul><div id="plsr" class="cf">&nbsp;</div></div></div></div></div>';
+var pcontent = '<div id="tls"><div class="tl arrowright arrowright_e" title="Skip"></div><div class="tl save save_m" title="Share This Queue"></div><div class="tl pinleft pinleft_m" title="Exact Search"></div><div class="tl refresh refresh_b" title="Random From Playlist"></div><div class="tl search" title="History"></div><div class="alerts"></div></div><div id="oW"><div id="w"><div id="hd" class="cf"><div id="l"><div><span>HnS YouTube Instant</span></div></div><input type="text" id="sB" value="" spellcheck="false"></input><div id="sTW"><div id="sTK"><strong>Search YouTube Instantly</strong></div></div><div id="sug"></div></div><div id="m" class="cf"><div id="pW"><div id="pl" class="cf">&nbsp;</div></div><div id="uP"><div id="pI"><input type="text" id="pB" value="Search The Queue" spellcheck="false"></input></div><ul id="pl" class="cf"></ul></div><div id="hP"><div id="pHI"><input type="text" id="sHB" value="Search Room History" spellcheck="false"></input></div><ul id="plh" class="cf"></ul></div><div id="sP"><div id="pH"><div id="sPI"><input type="text" id="sPB" value="Search Playlists" spellcheck="false"></input></div><div id="sH"><div id="pN">&nbsp;</div><img id="btp" src="i/back.png"></div></div><ul id="pls" class="cf">&nbsp;</ul><div id="plsr" class="cf">&nbsp;</div></div></div></div></div>';
 var dC = {
 	"title": "HnS YouTube Instant",
 	"remove": "quetube",
@@ -18,6 +18,7 @@ var dC = {
 	"pSResults": false,
 	"sBFocus": false,
 	"sPBFocus": false,
+	"sHBFocus": false,
 	"pBFocus": false,
 	"sPL": false,
 	"sLS": false,
@@ -161,9 +162,14 @@ function loadQueue(){
 	$.getJSON("json.php",{type:1,dj:dC.room,apikey:"hnsapi"},function(responseData){
 		if (responseData){
 			dC.queue = $.parseJSON(Base64.decode(responseData["data"].queue));
+			dC.history = $.parseJSON(Base64.decode(responseData["data"].history));
 			dC.timestamp = responseData["data"].timestamp;
 			if (!$.isArray(dC.queue)){
 				dC.queue = [];
+				pushQueue();
+			}
+			if (!$.isArray(dC.history)){
+				dC.history = [];
 				pushQueue();
 			}
 			updateQueue();
@@ -178,20 +184,31 @@ function updateQueue(){
 			$("div#uP ul#pl").append('<li id="' + item[0] + '" style="background-image:url(' + item[2] + ')">' + item[1] + '</li>');
 		});
 	} else $("div#uP ul#pl").html('<li class="empty">No Videos Are In The Queue</li>');
+	if (dC.history.length > 0){
+		$("div#hP ul#plh").empty();
+		$.each(dC.history, function(n, item){
+			$("div#hP ul#plh").append('<li id="' + item[0] + '" style="background-image:url(' + item[2] + ')">' + item[1] + '</li>');
+		});
+	} else $("div#hP ul#plh").html('<li class="empty">No Videos Are In The History</li>');
 }
 
 function pushQueue(){
 	dC.timestamp = getTime();
-	$.get('json.php',{type:2,dj:dC.room,queue:Base64.encode(json_encode(dC.queue)),timestamp:dC.timestamp,apikey:"hnsapi"});
+	$.get('json.php',{type:2,dj:dC.room,queue:Base64.encode(json_encode(dC.queue)),timestamp:dC.timestamp,history:Base64.encode(json_encode(dC.history)),apikey:"hnsapi"});
 }
 
 function monitorQueue(){
 	$.getJSON("json.php",{type:3,dj:dC.room,timestamp:dC.timestamp,apikey:"hnsapi"},function(responseData){
 		if (responseData && responseData["data"] !== false){
 			dC.queue = $.parseJSON(Base64.decode(responseData["data"].queue));
+			dC.history = $.parseJSON(Base64.decode(responseData["data"].history));
 			dC.timestamp = responseData["data"].timestamp;
 			if (!$.isArray(dC.queue)){
 				dC.queue = [];
+				pushQueue();
+			}
+			if (!$.isArray(dC.history)){
+				dC.history = [];
 				pushQueue();
 			}
 			updateQueue();
@@ -276,7 +293,18 @@ $(window).load(function(){
 	});
 	$("div.tl.refresh").click(function(){
 		loadRandomVideo();
-		if ($("div.tl.search").hasClass("on")) $("div.tl.search").click();
+	});
+	$("div.tl.search").click(function(){
+		if ($("div.tl.search").hasClass("on")) $("div.tl.search").attr('title', 'View Room History');
+		else $("div.tl.search").attr('title', 'View Room Queue');
+		$("div.tl.search").toggleClass("on");
+		if ($("div#uP").is(":visible")){
+			$("div#hP").show();
+			$("div#uP").hide();
+		} else {
+			$("div#uP").show();
+			$("div#hP").hide();
+		}
 	});
 	$("div#hd input[type='text']#sB").focus(function(){
 		dC.sBFocus = true;
@@ -296,6 +324,13 @@ $(window).load(function(){
 	}).blur(function(){
 		if ($(this).val() == "") $(this).val('Search The Queue');
 		dC.pBFocus = false;
+	});
+	$("div#hP input[type='text']#sHB").focus(function(){
+		if ($(this).val() == "Search Room History") $(this).val('');
+		dC.sHBFocus = true;
+	}).blur(function(){
+		if ($(this).val() == "") $(this).val('Search Room History');
+		dC.sHBFocus = false;
 	});
 	$("div#sug ul#suggest li").live('mousedown', function(e){
 		try {
@@ -414,7 +449,6 @@ function onBodyLoad(){
 	currentPSearch = '';
 	currentSuggestion = '';
 	currentVideoId = '';
-	playlistShowing = false;
 	playlistArr = [];
 	xhrWorking = false;
 	pendingSearch = false;
@@ -444,6 +478,10 @@ function addItemYTQueue(a){
 
 function doQueueSearch(){
 	var a = $("input[type='text']#pB");
+}
+
+function doHistorySearch(){
+	var a = $("input[type='text']#sHB");
 }
 
 function doPlaylistSearch(){
@@ -570,7 +608,7 @@ function cleanInterface(){
 	$("div#sug").empty();
 	playlistArr = [];
 	currentSuggestion = '';
-	$("input[type='text']#sB").val('');
+	$("input[type='text']#sB,input[type='text']#pB,input[type='text']#sHB,input[type='text']#sPB").val('');
 	$("div#sTK").html('<strong>Search YouTube Instantly</strong>').attr('title', '');
 }
 
@@ -665,24 +703,14 @@ function updateVideoDisplay(b){
 		}
 		d.append(f.html(a.append(m.append(r).append(s)).append(g).append(h).append(j)).append(k.html(l)).append(y.append(z).append(t).append(u)));
 	}
-	var A = $("div#pW");
-	$("div#pW div#pl").remove();
-	A.append(d);
-	if (!playlistShowing){
-		if ($("div#uP").is(":hidden") && $("div#sP").is(":hidden")){
-			A.slideDown('slow');
-			playlistShowing = true;
-		}
-	}
+	$("div#pW").find("div#pl").remove().end().append(d);
 	currentPlaylistPos = -1;
 	doneWorking();
 }
 
 function doneWorking(){
 	xhrWorking = false;
-	if (pendingSearch){
-		pendingSearch = false;
-	}
+	if (pendingSearch) pendingSearch = false;
 	$("input[type='text']#sB").attr('class', 'sP');
 }
 
@@ -748,8 +776,7 @@ function handleSmallScreens(){
 			$("div#sP ul#pls").height(dC.playerHeight - 40);
 			$("div#sP div#plsr ul#pl").height(dC.playerHeight - 40);
 			$("div#sP div#plsr").height(dC.playerHeight - 40);
-			$("div#sP ul.pl").height(dC.playerHeight - 40);
-			$("div#uP ul#pl").height(dC.playerHeight - 40);
+			$("div#sP ul.pl,div#uP ul#pl,div#hP ul#plh").height(dC.playerHeight - 40);
 			$("div#pW div#pl div.vW").css('height', dC.thumbHeight);
 			$("div#pW div#pl div.vW img.thumb").height(dC.thumbHeight);
 			$("div#pW div#pl div.vW div.title").height(dC.thumbHeight);
@@ -767,6 +794,7 @@ $(document).ready(function(){
 	loadQueue();
 	$("input[type='text']#sB").keyup(doInstantSearch);
 	$("input[type='text']#pB").keyup(doQueueSearch);
+	$("input[type='text']#sHB").keyup(doHistorySearch);
 	$("input[type='text']#sPB").keyup(doPlaylistSearch);
 	$(document.documentElement).keydown(onKeyDown);
 	onBodyLoad();
