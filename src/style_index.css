@@ -64,8 +64,8 @@ ul#roomlist li:nth-child(even):hover{background-color:#999}
 ul#roomlist li#header{background-color:#ffc;font-size:20pt;font-weight:bold;height:38px;padding:20px}
 ul#roomlist li > div{float:left;text-align:center}
 ul#roomlist li > div.name{text-align:left;width:45%}
-ul#roomlist li > div.queuesize{width:5%}
-ul#roomlist li > div.updated{width:45%}
+ul#roomlist li > div.queuesize{width:10%}
+ul#roomlist li > div.updated{width:40%}
 ul#roomlist li > div.dj{width:5%}
 
 /** Begin Shiny Buttons */
