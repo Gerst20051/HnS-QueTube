@@ -1,7 +1,7 @@
 var pcontent = '<div id="tls"><div class="tl arrowright arrowright_e" title="Skip"></div><div class="tl save save_b" title="Share This Queue"></div><div class="alerts"></div></div><div id="oW"><div id="w"><div id="hd" class="cf"><div id="l"><div><span>HnS YouTube Instant</span></div></div><div id="sTW"><div id="sTK"><strong>HnS Quetube</strong><span id="roomname"></span></div></div></div><div id="m" class="cf"><div id="vD"><div id="iVD">Loading...</div></div><div id="pD"><div id="uP"><div id="pI"><input type="text" id="pB" value="Search The Queue" spellcheck="false"></input></div><ul id="pl" class="cf"></ul></div></div></div></div></div>';
 var dC = {
 	"devkey": "AI39si6-KJa9GUrvoNKGEh0rZWfJ2yFrPOxIN79Svnz9zAhosYHrbZfpADwJhd3v6TNl9DbvTtUS_deOcoNCodgvTqq3kxcflw",
-	"title": "HnS YouTube Instant",
+	"title": "HnS Quetube",
 	"remove": "quetube",
 	"vThumbs": 10,
 	"playerWidth": 720,
@@ -83,6 +83,16 @@ String.prototype.toTitleCase = function(){
 		return a.charAt(0).toUpperCase() + a.substr(1);
 	})
 };
+String.prototype.stripSlashes = function(){
+	return this.replace(/\\(.?)/g, function (s, n1){
+		switch (n1) {
+			case '\\': return '\\';
+			case '0': return '\u0000';
+			case '': return '';
+			default: return n1;
+		}
+	});
+};
 
 function IsRightButtonClicked(e){
 	var a = false;
@@ -136,7 +146,7 @@ function loadQueue(){
 			dC.queue = $.parseJSON(Base64.decode(responseData["data"].queue));
 			dC.timestamp = responseData["data"].timestamp;
 			dC.roomname = responseData["data"].name;
-			$("#roomname").text(" - "+dC.roomname);
+			$("#roomname").text(" - "+dC.roomname.stripSlashes());
 			if (!$.isArray(dC.queue)){
 				dC.queue = [];
 				pushQueue();

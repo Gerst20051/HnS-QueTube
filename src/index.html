@@ -15,7 +15,7 @@
 <link rel="stylesheet" type="text/css" href="style_index.css">
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
 <script type="text/javascript" src="http://www.webtoolkit.info/djs/webtoolkit.base64.js"></script>
-<script type="text/javascript" src="https://raw.github.com/kvz/phpjs/master/functions/json/json_encode.js"></script>
+<script type="text/javascript" src="https://rawgithub.com/kvz/phpjs/master/functions/json/json_encode.js"></script>
 </head>
 <body>
 <div id="oW">
@@ -40,23 +40,22 @@
 </div>
 </body>
 <script>
-function getDate(timestamp){
-	var datetime = new Date(timestamp*1000), hours = datetime.getHours(), prefix = "AM", minutes = datetime.getMinutes(), seconds = datetime.getSeconds();
-	if (hours > 12) { hours = hours - 12; prefix = "PM"; }
-	else if (hours == 0) hours = 12;
-	if (minutes < 10) { minutes = '0'+minutes; }
-	if (seconds < 10) { seconds = '0'+seconds; }
-	var monthArray = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-	var dayArray = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-	var timesecs = hours + ":" + minutes + ":" + seconds + " " + prefix;
-	var title = dayArray[datetime.getDay()] + ", " + monthArray[datetime.getMonth()] + " " + datetime.getDate() + ", " + datetime.getFullYear() + " " + timesecs;
-	var time = hours + ":" + minutes + " " + prefix;
-	return title;
-}
+String.prototype.stripSlashes = function(){
+	return this.replace(/\\(.?)/g, function (s, n1){
+		switch (n1) {
+			case '\\': return '\\';
+			case '0': return '\u0000';
+			case '': return '';
+			default: return n1;
+		}
+	});
+};
 
 function timeAgo(date1, date2, granularity){
 	var difference = 0, output = '';
 	var periods = {
+		year: 29030400,
+		month: 2419200,
 		week: 604800,
 		day: 86400,
 		hour: 3600,
@@ -66,26 +65,23 @@ function timeAgo(date1, date2, granularity){
 	
 	if (!granularity) granularity = 5;
 	
-	date1 = (typeof(date1) == 'string') ? new Date(date1).getTime() / 1000 : new Date().getTime() / 1000;
-	date2 = (typeof(date2) == 'string') ? new Date(date2).getTime() / 1000 : new Date().getTime() / 1000;
-	
+	date1 = (typeof(date1) == 'string' || typeof(date1) == 'number') ? new Date(date1).getTime() / 1000 : new Date().getTime() / 1000;
+	date2 = (typeof(date2) == 'string' || typeof(date2) == 'number') ? new Date(date2).getTime() / 1000 : new Date().getTime() / 1000;
+
 	if (date1 > date2) difference = date1 - date2;
 	else difference = date2 - date1;
-	
-	for (var period in periods){
+	difference = Math.floor(difference);
+
+	for (var period in periods) {
 		var value = periods[period];
 		
-		if (difference >= value){
+		if (difference >= value) {
 			var time = Math.floor(difference / value);
 			difference %= value;
-			
 			output += time + ' ';
-			
 			if (time > 1) output += period + 's ';
 			else output += period + ' ';
-
-			granularity--;
-			if (granularity == 0) break;
+			if (--granularity == 0) break;
 		}
 	}
 	
@@ -94,12 +90,12 @@ function timeAgo(date1, date2, granularity){
 
 function getRooms(){
 	$.getJSON("json.php",{type:4,apikey:"hnsapi"},function(responseData){
-		if (responseData){
+		if (responseData) {
 			var rooms = responseData["data"];
 			$("#roomlist").html('<li id="header"><div class="name">Name of DJ Room</div><div class="queuesize">Songs</div><div class="updated">Last Updated</div><div class="dj">DJ</div></li>');
 			$.each(rooms, function(i,v){
 				var queue = $.parseJSON(Base64.decode(v.queue));
-				$("#roomlist").append('<li><div class="name"><a href="room.html#'+v.dj+'">'+v.name+'</a></div><div class="queuesize">'+queue.length+'</div><div class="updated">'+getDate(v.timestamp)+'</div><div class="dj"><a href="dj.html#'+v.dj+'">DJ</div></li>');
+				$("#roomlist").append('<li><div class="name"><a href="room.html#'+v.dj+'">'+v.name.stripSlashes()+'</a></div><div class="queuesize">'+queue.length+'</div><div class="updated">'+timeAgo(v.timestamp*1E3, +new Date, 2)+'</div><div class="dj"><a href="dj.html#'+v.dj+'">DJ</div></li>');
 			});
 		}
 	});
