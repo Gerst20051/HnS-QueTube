@@ -21,4 +21,8 @@ Project Name: YouTube Watch Later Playlist
 
 `[$]> scp -r src/[\!.]* droplet:www/quetube`
 
+`[$]> sed -i '' -e "s#'LOCAL', true#'LOCAL', false#1" www/quetube/config.inc.php`
+
+`[$]> ssh droplet 'sed -i -e "s#'\''LOCAL'\'', true#'\''LOCAL'\'', false#1" www/quetube/config.inc.php'`
+
 `Creator: Andrew Gerst`
