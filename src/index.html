@@ -14,8 +14,8 @@
 <link href="favicon.ico" rel="icon" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="style_index.css">
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
-<script type="text/javascript" src="http://www.webtoolkit.info/djs/webtoolkit.base64.js"></script>
-<script type="text/javascript" src="https://rawgithub.com/kvz/phpjs/master/functions/json/json_encode.js"></script>
+<script type="text/javascript" src="http://hnswave.co/cdn/webtoolkit.base64.js"></script>
+<script type="text/javascript" src="http://hnswave.co/cdn/json_encode.js"></script>
 </head>
 <body>
 <div id="oW">
@@ -94,7 +94,7 @@ function getRooms(){
 			var rooms = responseData["data"];
 			$("#roomlist").html('<li id="header"><div class="name">Name of DJ Room</div><div class="queuesize">Songs</div><div class="updated">Last Updated</div><div class="dj">DJ</div></li>');
 			$.each(rooms, function(i,v){
-				var queue = $.parseJSON(Base64.decode(v.queue));
+				var queue = v.queue.length ? $.parseJSON(Base64.decode(v.queue)) : [];
 				$("#roomlist").append('<li><div class="name"><a href="room.html#'+v.dj+'">'+v.name.stripSlashes()+'</a></div><div class="queuesize">'+queue.length+'</div><div class="updated">'+timeAgo(v.timestamp*1E3, +new Date, 2)+'</div><div class="dj"><a href="dj.html#'+v.dj+'">DJ</div></li>');
 			});
 		}
